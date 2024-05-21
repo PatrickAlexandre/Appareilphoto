@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming UI Replica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-800 font-sans leading-normal tracking-normal">
+    <div class="absolute bottom-0 w-full flex justify-between">
+        <!-- Spell Bar -->
+        <div class="flex">
+            <!-- Placeholder for Spell Icons -->
+            <!-- Repeat for each spell icon -->
+            <img src="https://placehold.co/50x50" alt="Spell Icon" class="m-1">
+            <!-- ... -->
+        </div>
+
+        <!-- Player Image & Health/Mana Bars -->
+        <div class="flex flex-col items-center">
+            <img src="https://placehold.co/100x100" alt="Player Image" class="rounded-full">
+            <div class="w-24 h-3 bg-red-600 rounded-full my-1"></div> <!-- Health Bar -->
+            <div class="w-24 h-3 bg-blue-600 rounded-full"></div> <!-- Mana Bar -->
+        </div>
+    </div>
+        <!--  Inventory -->
+        <div class="flex flex-col items-center">
+
+        </div>
+    </div>
+
+    <!-- Inventory Grid -->
+    <div class="absolute bottom-0 right-0 w-64 p-2">
+        <!-- Placeholder for Inventory Items -->
+        <!-- Repeat for each inventory item -->
+        <div class="grid grid-cols-4 gap-2">
+            <img src="https://placehold.co/40x40" alt="Inventory Item" class="m-1 rounded-lg">
+            <!-- ... -->
+        </div>
+    </div>
+
+    <!-- Reputation Progress Bar -->
+    <div class="absolute bottom-0 left-0 w-1/4 p-2">
+        <div class="bg-gray-200 rounded-full h-2 overflow-hidden">
+            <div class="bg-green-600 h-2" style="width: 50%;"></div> <!-- Dynamic width based on reputation -->
+        </div>
+    </div>
+
+    <!-- Chat Windows -->
+    <div class="absolute bottom-0 left-1/4 w-1/4 p-2">
+        <!-- General Chat -->
+        <div class="bg-gray-700 p-2 rounded mb-2">
+            <p class="text-gray-300 text-sm">General chat messages...</p>
+        </div>
+        <!-- Commerce Chat -->
+        <div class="bg-gray-700 p-2 rounded mb-2">
+            <p class="text-gray-300 text-sm">Commerce chat messages...</p>
+        </div>
+        <!-- PVP Chat -->
+        <div class="bg-gray-700 p-2 rounded">
+            <p class="text-gray-300 text-sm">PVP chat messages...</p>
+        </div>
+    </div>
+
+    <!-- Minimap and Quests -->
+    <div class="absolute top-0 right-0 w-64 p-2">
+        <!-- Minimap -->
+        <div class="bg-gray-600 rounded-full w-32 h-32 mb-4"></div>
+        <!-- Quests -->
+        <div class="bg-gray-700 p-2 rounded mb-2">
+            <p class="text-gray-300 text-sm">Quests...</p>
+            <!-- List of quests -->
+        </div>
+        <!-- Daily Quests -->
+        <div class="bg-gray-700 p-2 rounded">
+            <p class="text-gray-300 text-sm">Daily Quests...</p>
+            <!-- List of daily quests -->
+        </div>
+    </div>
+
+    <!-- Achievements and Buffs -->
+    <div class="absolute top-0 left-0 w-1/4 p-2">
+        <!-- Achievements -->
+        <div class="bg-gray-700 p-2 rounded mb-2">
+            <p class="text-gray-300 text-sm">Achievements...</p>
+        </div>
+        <!-- Buffs -->
+        <div class="bg-gray-700 p-2 rounded">
+            <p class="text-gray-300 text-sm">Buffs...</p>
+            <!-- List of buffs -->
+        </div>
+    </div>
+</body>
+</html>
