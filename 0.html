@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧬💪 VitalQuest 🌍🏃‍♂️🎮💫 — Elevate Your Health, Embark on Epic Adventures ⧫⯎⊛⫷⫸</title>
+    <link rel="icon" type="image/png" href="img/EnerGGY.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-800 text-white font-sans leading-normal tracking-normal">
+    <div class="container mx-auto p-4">
+        <!-- Profile Section -->
+        <div class="p-4 rounded-lg flex items-center space-x-4 bg-gray-800">
+            <!-- Profile Image -->
+            <img title="Cliquez ici pour remplacer votre photo de profil" src="https://i.gifer.com/6Dg.gif" id="replaceableImage" class="rounded-full w-24 mx-auto cursor-pointer" alt="🧬" onclick="captureImage()">
+            <video id="camera" class="hidden" autoplay></video>
+            <canvas id="canvas" class="hidden"></canvas>
+            
+            <!-- Placeholder Image (Hidden) -->
+            <img src="https://placehold.co/50x50" alt="Faction logo" class="hidden w-12 h-12">
+            
+            <!-- Profile Info -->
+            <div>
+                <!-- MBTI Selector -->
+                <div class="mt-4">
+                    <select 
+                        id="mbti-type" 
+                        class="bg-gray-800 text-white border-gray-700 rounded px-2 py-1 max-w-full" 
+                        onchange="changeBackgroundColorAndTextColor()"
+                    >
+                        <option value="default">Sélectionnez un type MBTI</option>
+                        <option value="ISTJ">🧠 Inspecteur ISTJ</option>
+                        <option value="ISFJ">💖 Protecteur ISFJ</option>
+                        <option value="INFJ">🌟 Conseiller INFJ</option>
+                        <option value="INTJ">🔬 Stratège INTJ</option>
+                        <option value="ISTP">🛠️ Virtuose ISTP</option>
+                        <option value="ISFP">🎨 Aventurier ISFP</option>
+                        <option value="INFP">🌈 Médiateur INFP</option>
+                        <option value="INTP">🔍 Logicien INTP</option>
+                        <option value="ESTP">⚡ Entrepreneur ESTP</option>
+                        <option value="ESFP">🎉 Artiste ESFP</option>
+                        <option value="ENFP">🔥 Champion ENFP</option>
+                        <option value="ENTP">💡 Visionnaire ENTP</option>
+                        <option value="ESTJ">📋 Directeur ESTJ</option>
+                        <option value="ESFJ">🤝 Consul ESFJ</option>
+                        <option value="ENFJ">🌞 Protagoniste ENFJ</option>
+                        <option value="ENTJ">🚀 Commandant ENTJ</option>
+                    </select>
+                </div>
+
+                <!-- Character Name -->
+                <div class="flex items-center space-x-2 mb-2">
+                    <span 
+                        id="character-name" 
+                        class="font-bold text-pink-500 text-lg overflow-hidden transition-color" 
+                        contenteditable="true"
+                    >
+                        Johanna
+                    </span>
+                </div>
+                
+                <!-- Life Percentage Container -->
+                <div class="mt-2">
+                    <div class="relative w-full bg-gray-600 rounded">
+                        <div  id="lifePercentage" class="bg-green-500 text-xs leading-none py-1 text-center text-white rounded" style="width: 99%"><span id="lifePercentageText">99%</span></div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="flex items-center space-x-4">
+                    <span class="text-yellow-400">
+                        <i class="fas fa-shield-alt"></i> 14565
+                    </span>
+                    <span class="flex items-center text-blue-400">
+                        <i class="fas fa-hourglass-half mr-2"></i>
+                        <span id="displayed-age">0</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="mt-4 bg-gray-900 p-2 rounded-lg flex justify-around flex-wrap">
+            <button id="character-btn" class="nav-button bg-yellow-500 text-black active">
+                <i class="fas fa-user nav-icon"></i>
+                Personnage
+            </button>
+            <button id="achievements-btn" class="nav-button text-yellow-500">
+                <i class="fas fa-trophy nav-icon"></i>
+                Hauts Faits
+            </button>
+            <button id="collections-btn" class="nav-button text-yellow-500">
+                <i class="fas fa-archive nav-icon"></i>
+                Collections
+            </button>
+            <button id="pomodoro-btn" class="hidden nav-button bg-red-500 text-white">
+                <i class="fas fa-apple-alt nav-icon"></i>
+                Pomodoro
+            </button>
+            <button id="expenses-btn" class="hidden nav-button bg-green-500 text-white">
+                <i class="fas fa-wallet nav-icon"></i>
+                Pouvoir d'Achat
+            </button>
+            <button id="inventory-btn" class="hidden nav-button bg-blue-500 text-white">
+                <i class="fas fa-boxes nav-icon"></i>
+                Inventaire
+            </button>
+            <button id="nutrition-btn" class="hidden nav-button bg-purple-500 text-white">
+                <i class="fas fa-seedling nav-icon"></i>
+                Alimentation
+            </button>
+            <button id="scientists-btn" class="hidden nav-button bg-teal-500 text-white">
+                <i class="fas fa-flask nav-icon"></i>
+                Scientifiques
+            </button>
+        </div>
+
+        <!-- Game Stats Section -->
+        <div id="game-stats-section" class="mt-4 bg-gray-900 p-4 rounded-lg">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="tooltip">
+                    <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
+                        <i class="fas fa-tachometer-alt text-orange-400"></i>
+                        <span id="nap" class="text-orange-400">Niveau d'Activité Physique (NAP)</span>
+                    </div>
+                    <span class="tooltiptext">Niveau d'Activité Physique</span>
+                </div>
+                <div class="tooltip">
+                    <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
+                        <i class="fas fa-fire text-purple-400"></i>
+                        <span id="bmr" class="text-purple-400">Métabolisme de Base au Repos (BMR)</span>
+                    </div>
+                    <span class="tooltiptext">Métabolisme de Base au Repos</span>
+                </div>
+                <div class="tooltip">
+                    <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
+                        <i class="fas fa-utensils text-yellow-500"></i>
+                        <span id="dej" class="text-yellow-500">Dépense Énergétique Journalière (DEJ)</span>
+                    </div>
+                    <span class="tooltiptext">Dépense Énergétique Journalière</span>
+                </div>
+                <div class="hidden tooltip flex items-center bg-white rounded overflow-hidden"> <!-- indify iframe - journée progression -->
+                    <iframe src="https://indify.co/widgets/live/progressBar/0ZLxdaOuuNO8RzKgWvbt" height="24" style="border:none;"></iframe>
+                    <span class="tooltiptext">Journée en cours</span>
+                </div>
+                <div class="tooltip">
+                    <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
+                        <i class="fas fa-bed text-purple-400"></i>
+                        <span class="text-purple-400">32</span>
+                    </div>
+                    <span class="tooltiptext">Heures de Sommeil</span>
+                </div>
+                <div class="tooltip col-span-2">
+                    <div class="bg-gray-700 p-4 rounded cursor-pointer" onclick="window.location.href='https://chatgpt.com/g/g-3VrgJ1GpH-sous-chef'">
+                        <div class="flex items-center space-x-2">
+                            <img src="Images/SousChef.jpg" alt="Character icon" class="rounded-full w-12 h-12">
+                            <span class="text-yellow-400 text-lg font-semibold">Sous Chef</span>
+                        </div>
+                        <div class="mt-2">
+                            <p class="text-gray-300">Le Sous Chef est un personnage clé en cuisine, toujours prêt à aider et à superviser les préparations.</p>
+                        </div>
+                        <div class="mt-2">
+                            <div class="relative w-full bg-gray-600 rounded">
+                                <div class="bg-green-500 text-xs leading-none py-1 text-center text-white rounded" style="width: 55%">55%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="tooltiptext">Niveau Calorique du Personnage</span>
+                </div>
+                <div class="tooltip">
+                    <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
+                        <i class="fas fa-heartbeat text-green-400"></i>
+                        <span class="text-green-400">797 / 797</span>
+                    </div>
+                    <span class="tooltiptext">Points de Vie</span>
+                </div>
+                <div class="tooltip">
+                    <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
+                        <i class="fas fa-magic text-blue-400"></i>
+                        <span class="text-blue-400">487 / 489</span>
+                    </div>
+                    <span class="tooltiptext">Points de Mana</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div id="action-bar" class="mt-4 bg-gray-900 p-4 rounded-lg">
+            <div class="flex justify-center space-x-2">
+                <button class="bg-gray-700 p-2 rounded"><i class="fas fa-bolt"></i></button>
+                <button class="bg-gray-700 p-2 rounded"><i class="fas fa-fire"></i></button>
+                <button class="bg-gray-700 p-2 rounded"><i class="fas fa-water"></i></button>
+                <button class="bg-gray-700 p-2 rounded"><i class="fas fa-leaf"></i></button>
+                <button class="bg-gray-700 p-2 rounded"><i class="fas fa-wind"></i></button>
+            </div>
+        </div>
+
+        <!-- Inventory Section -->
+        <div id="inventory-section" class="mt-4 bg-gray-900 p-4 rounded-lg hidden">
+            <h2 class="text-lg font-bold mb-4">Inventaire</h2>
+            <div class="grid grid-cols-4 gap-4">
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/50x50" alt="Item 1" class="mb-2">
+                    <span>Item 1</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/50x50" alt="Item 2" class="mb-2">
+                    <span>Item 2</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/50x50" alt="Item 3" class="mb-2">
+                    <span>Item 3</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/50x50" alt="Item 4" class="mb-2">
+                    <span>Item 4</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nutrition Section -->
+        <div id="nutrition-section" class="mt-4 bg-gray-900 p-4 rounded-lg hidden">
+            <h2 class="text-lg font-bold mb-4">Alimentation</h2>
+            <div class="mb-4">
+                <h3 class="font-semibold">Calendrier des Semis</h3>
+                <table class="w-full bg-gray-700 text-white rounded">
+                    <thead>
+                        <tr>
+                            <th class="p-2">Plante</th>
+                            <th class="p-2">Période de Semis</th>
+                            <th class="p-2">Période de Récolte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-2">Tomate</td>
+                            <td class="p-2">Mars - Avril</td>
+                            <td class="p-2">Juillet - Septembre</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">Carotte</td>
+                            <td class="p-2">Février - Mai</td>
+                            <td class="p-2">Juin - Octobre</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">Laitue</td>
+                            <td class="p-2">Mars - Juin</td>
+                            <td class="p-2">Mai - Août</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3 class="font-semibold">Sous Chef</h3>
+                <button class="bg-green-500 text-white px-4 py-2 rounded flex items-center mt-2">
+                    <i class="fas fa-utensils mr-2"></i> Accéder
+                </button>
+            </div>
+        </div>
+
+        <!-- Scientists Section -->
+        <div id="scientists-section" class="mt-4 bg-gray-900 p-4 rounded-lg hidden">
+            <h2 class="text-lg font-bold mb-4">Top 8 Scientifiques</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Albert Einstein" class="mb-2">
+                    <span>Albert Einstein</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Isaac Newton" class="mb-2">
+                    <span>Isaac Newton</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Marie Curie" class="mb-2">
+                    <span>Marie Curie</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Galileo Galilei" class="mb-2">
+                    <span>Galileo Galilei</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Charles Darwin" class="mb-2">
+                    <span>Charles Darwin</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Nikola Tesla" class="mb-2">
+                    <span>Nikola Tesla</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Stephen Hawking" class="mb-2">
+                    <span>Stephen Hawking</span>
+                </div>
+                <div class="bg-gray-700 p-4 rounded">
+                    <img src="https://placehold.co/100x100" alt="Leonardo da Vinci" class="mb-2">
+                    <span>Leonardo da Vinci</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expenses Section -->
+        <div id="expenses-section" class="mt-4 bg-gray-900 p-4 rounded-lg hidden">
+            <h2 class="text-lg font-bold mb-4">Dépenses</h2>
+            <div class="flex mb-4">
+                <label for="csvFileInput" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer flex items-center">
+                    <i class="fas fa-file-import mr-2"></i> Importer un fichier CSV
+                </label>
+                <input type="file" id="csvFileInput" accept=".csv" class="hidden">
+            </div>
+            <div class="overflow-x-auto">
+                <table id="expensesTable" class="min-w-full bg-gray-900">
+                    <thead class="hidden">
+                        <tr>
+                            <th class="py-2 px-4 bg-gray-700 text-left text-white">Catégorie</th>
+                            <th class="py-2 px-4 bg-gray-700 text-left text-white">€ / Mois</th>
+                            <th class="py-2 px-4 bg-gray-700 text-left text-white">Dépenses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les lignes du tableau seront insérées ici via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4">
+                <h3 class="font-semibold">Fournisseurs</h3>
+                <ul class="list-disc ml-4">
+                    <li>Amazon</li>
+                    <li>Carrefour</li>
+                    <li>Lidl</li>
+                    <li>Auchan</li>
+                    <li>E.Leclerc</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 👾 Energy and Life | Expectancy Calculator Modal 🕹️ -->
+        <div id="energyModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+            <div class="bg-gray-900 p-8 rounded-lg w-full max-w-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="hidden text-lg font-bold text-gray-800">Énergie, Fréquence, Vibration</h2>
+                    <div class="p-3 bg-dark text-light rounded">
+                        <p class="text-sm italic">"Si vous voulez trouver les secrets de l'univers, pensez en termes d'énergie, de fréquence et de vibration." - Nikola Tesla</p>
+                    </div>
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-200">&times;</button>
+                </div>
+                <form id="energyForm">
+                    <div class="flex flex-wrap -mx-2 mb-4">
+                        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                            <label for="gender" class="block text-gray-400">Genre</label>
+                            <select class="form-control block w-full bg-gray-800 text-white border border-gray-700 rounded px-3 py-2" id="gender">
+                                <option value="male">Homme</option>
+                                <option value="female">Femme</option>
+                            </select>
+                        </div>
+                        <div class="w-full md:w-1/2 px-2">
+                            <label for="age" class="block text-gray-400">Âge</label>
+                            <input type="number" class="form-control block w-full bg-gray-800 text-white border border-gray-700 rounded px-3 py-2" id="age" placeholder="Entrez votre âge">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-2 mb-4">
+                        <div class="w-full md:w-1/3 px-2 mb-4 md:mb-0">
+                            <label for="weight" class="block text-gray-400">Poids (kg)</label>
+                            <input type="number" class="form-control block w-full bg-gray-800 text-white border border-gray-700 rounded px-3 py-2" id="weight" placeholder="Entrez votre poids" value="62" min="2.1" max="635">
+                        </div>
+                        <div class="w-full md:w-1/3 px-2 mb-4 md:mb-0">
+                            <label for="height" class="block text-gray-400">Taille (cm)</label>
+                            <input type="number" class="form-control block w-full bg-gray-800 text-white border border-gray-700 rounded px-3 py-2" id="height" placeholder="Entrez votre taille" value="165" min="54.6" max="272">
+                        </div>
+                        <div class="w-full md:w-1/3 px-2">
+                            <label for="activity" class="block text-gray-400">Niveau d'Activité</label>
+                            <input type="number" step="0.01" class="form-control block w-full bg-gray-800 text-white border border-gray-700 rounded px-3 py-2" id="activity" placeholder="Entrez le niveau d'activité" value="1.5" min="1.2" max="1.8">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded flex items-center">
+                            <i class="fas fa-file-import mr-2"></i> Importer CSV
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-4">
+                    <p id="ageDisplay" class="text-gray-400 mt-2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 p-8 mt-8 rounded-lg text-center">
+        <h2 class="hidden text-2xl font-bold mb-4 text-white">Pourquoi ? Comment ? Quoi ?</h2>
+
+        <div class="md:flex md:justify-center md:space-x-2 mb-8">
+            <section id="why" class="bg-blue-100 p-4 rounded-lg md:w-1/3 md:mr-2">
+                <h2 class="text-2xl font-bold text-blue-700 mb-2">Pourquoi Choisir Nos Services ? 🌟</h2>
+                <p class="text-gray-800">Nous nous engageons à transformer des vies en fournissant des ressources expertes qui permettent à chacun de réaliser son plein potentiel de bien-être. Avec nous, vous faites le choix de la santé et du bonheur.</p>
+            </section>
+            <section id="how" class="bg-green-100 p-4 rounded-lg md:w-1/3 md:mx-2">
+                <h2 class="text-2xl font-bold text-green-700 mb-2">Comment Faisons-nous cela ? 🔧</h2>
+                <p class="text-gray-800">Nous combinons notre passion pour la technologie avec une compréhension approfondie des besoins en santé pour créer des applications intuitives et efficaces, vous permettant ainsi de naviguer facilement vers un mode de vie sain.</p>
+            </section>
+            <section id="what" class="bg-yellow-100 p-4 rounded-lg md:w-1/3 md:ml-2">
+                <h2 class="text-2xl font-bold text-yellow-700 mb-2">Qu'Offrons-nous ? 🚀</h2>
+                <p class="text-gray-800">Nous sommes le moteur derrière une suite d'outils numériques innovants conçus pour optimiser votre quotidien. De la gestion du temps à l'équilibre nutritionnel, nous avons tout ce dont vous avez besoin pour exceller.</p>
+            </section>
+        </div>
+
+        <div class="text-gray-400 mb-6">
+            <h3 class="text-xl font-semibold mb-2 text-white">Découvrez l'histoire de Claire</h3>
+            <p class="mb-4">Rejoignez Claire et des milliers d'autres dans cette quête vers une vie plus saine et plus active. Transformez votre parcours santé en une aventure épique où chaque pas compte.</p>
+            <a href="blog.html" class="text-blue-500 hover:underline">Visitez notre blog</a>
+        </div>
+        <div class="text-gray-400 mb-6">
+            <h3 class="text-xl font-semibold mb-2 text-white">Rejoignez-nous sur les Réseaux Sociaux</h3>
+            <p class="mb-4">Participez à nos concours hebdomadaires et partagez vos aventures avec le hashtag <strong>#EpicHealthJourney</strong>.</p>
+            <a href="https://www.instagram.com" class="text-blue-500 hover:underline mr-4">Instagram</a>
+            <a href="https://www.facebook.com" class="text-blue-500 hover:underline">Facebook</a>
+        </div>
+        <div class="text-gray-400 mb-6">
+            <h3 class="text-xl font-semibold mb-2 text-white">Transformez Votre Bien-être en Jeu</h3>
+            <p class="mb-4">Chaque activité vous rapproche de niveaux supérieurs, de badges exclusifs et de récompenses réelles. Faites équipe avec des amis et relevez des défis ensemble.</p>
+            <a href="rewards.html" class="text-blue-500 hover:underline">En savoir plus</a>
+        </div>
+        <div class="text-gray-400 mb-6">
+            <h3 class="text-xl font-semibold mb-2 text-white">Partenariats Exclusifs</h3>
+            <p class="mb-4">Participez à des sessions live de fitness et des événements communautaires avec des experts en santé et des influenceurs de fitness.</p>
+            <a href="partners.html" class="text-blue-500 hover:underline">Découvrez nos partenaires</a>
+        </div>
+        <div>
+            <h3 class="text-xl font-semibold mb-4 text-white">Rejoignez-nous dès aujourd'hui !</h3>
+            <p class="mb-4 text-gray-400">Commencez votre quête vers une vie plus saine et plus active. L'aventure vous attend !</p>
+            <a href="signup.html" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">S'inscrire</a>
+        </div>
+    </footer>
+
+
+    <script src="x/modalEnergy.js"></script>
+    <script src="x/cameraCapture.js"></script>
+
+</body>
+</html>
