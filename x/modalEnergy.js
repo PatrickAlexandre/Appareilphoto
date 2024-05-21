@@ -127,9 +127,9 @@
                 if (weight > 0 && height > 0 && age > 0 && activityLevel > 0) {
                     const bmr = calculateBMR(gender, weight, height, age);
                     const dej = calculateDEJ(bmr, activityLevel);
-                    document.getElementById('bmr').innerHTML = `BMR ${bmr.toFixed(0)} kcal/ jour`;
-                    document.getElementById('dej').innerHTML = `DEJ ${dej.toFixed(0)} kcal/ jour`;
-                    document.getElementById('nap').innerHTML = `NAP ${activityLevel.toFixed(2)}`;
+                    document.getElementById('bmr').innerHTML = `${bmr.toFixed(0)} kcal /jour Métabolisme de Base au Repos (BMR)`;
+                    document.getElementById('dej').innerHTML = `${dej.toFixed(0)} kcal /jour Dépense Énergétique Journalière (DEJ)`;
+                    document.getElementById('nap').innerHTML = `${activityLevel.toFixed(2)} Niveau d'Activité Physique (NAP)`;
                     updateLifeExpectancy(gender, age);
                 } else {
                     document.getElementById('bmr').innerHTML = "Please fill all fields with valid values to calculate BMR and DEJ.";

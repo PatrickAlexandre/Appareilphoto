@@ -66,7 +66,7 @@
                 <!-- Life Percentage Container -->
                 <div class="mt-2">
                     <div class="relative w-full bg-gray-600 rounded">
-                        <div  id="lifePercentage" class="bg-green-500 text-xs leading-none py-1 text-center text-white rounded" style="width: 1%"><span id="lifePercentageText">1%</span></div>
+                        <div  id="lifePercentage" class="bg-green-500 text-xs leading-none py-1 text-center text-white rounded" style="width: 99%"><span id="lifePercentageText">99%</span></div>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                 <i class="fas fa-seedling nav-icon"></i>
                 Alimentation
             </button>
-            <button id="scientists-btn" class="nav-button bg-teal-500 text-white">
+            <button id="scientists-btn" class="hidden nav-button bg-teal-500 text-white">
                 <i class="fas fa-flask nav-icon"></i>
                 Scientifiques
             </button>
@@ -142,6 +142,10 @@
                         <span id="dej" class="text-yellow-500">Dépense Énergétique Journalière (DEJ)</span>
                     </div>
                     <span class="tooltiptext">Dépense Énergétique Journalière</span>
+                </div>
+                <div class="hidden tooltip flex items-center bg-white rounded overflow-hidden"> <!-- indify iframe - journée progression -->
+                    <iframe src="https://indify.co/widgets/live/progressBar/0ZLxdaOuuNO8RzKgWvbt" height="24" style="border:none;"></iframe>
+                    <span class="tooltiptext">Journée en cours</span>
                 </div>
                 <div class="tooltip">
                     <div class="flex items-center space-x-2 bg-gray-700 p-4 rounded">
@@ -181,13 +185,6 @@
                     </div>
                     <span class="tooltiptext">Points de Mana</span>
                 </div>
-                <div class="hidden tooltip"> <!-- indify iframe - journée progression -->
-                    <div class="bg-gray-700 p-4 rounded cursor-pointer">
-                        <iframe src="https://indify.co/widgets/live/progressBar/0ZLxdaOuuNO8RzKgWvbt" class="w-full sm:w-auto flex-grow" height="50" style="border:none;"></iframe>
-                        <span class="tooltiptext">Journée en cours</span>
-                    </div>
-                </div>
-
             </div>
         </div>
 
