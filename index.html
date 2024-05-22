@@ -1,94 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Game UI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MMORPG Mobile Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="bg-gray-800 text-white">
-
-    <!-- Header -->
-    <header class="bg-gray-900 p-4 flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-            <i class="fas fa-gamepad text-2xl"></i>
-            <h1 class="text-xl font-bold">Game Name</h1>
-        </div>
-        <div class="flex items-center space-x-4">
-            <div class="relative">
-                <i class="fas fa-bell text-xl"></i>
-                <span class="absolute top-0 right-0 bg-red-600 text-xs rounded-full px-1">3</span>
+<body>
+    <div id="app">
+        <header>
+            <h1>MMORPG Mobile Game</h1>
+        </header>
+        <nav>
+            <button class="nav-btn" data-target="home"><i class="fas fa-home"></i></button>
+            <button class="nav-btn" data-target="profile"><i class="fas fa-user"></i></button>
+            <button class="nav-btn" data-target="stats"><i class="fas fa-chart-bar"></i></button>
+            <button class="nav-btn" data-target="specialisation"><i class="fas fa-layer-group"></i></button>
+            <button class="nav-btn" data-target="combat"><i class="fas fa-fist-raised"></i></button>
+            <button class="nav-btn" data-target="shop"><i class="fas fa-shopping-cart"></i></button>
+        </nav>
+        <section id="home" class="content active">
+            <h2>Welcome to the MMORPG Mobile Game</h2>
+            <p>Select an option from the menu to get started.</p>
+        </section>
+        <section id="profile" class="content">
+            <h2>Character Profile</h2>
+            <div class="profile-info">
+                <p>Name: <span id="character-name">Afraid</span></p>
+                <p>Level: <span id="character-level">70</span></p>
+                <p>Class: <span id="character-class">Restoration Druid</span></p>
+                <p>Guild: <span id="character-guild">Loco Motives</span></p>
             </div>
-            <img src="https://placehold.co/40x40" alt="Profile Picture" class="rounded-full">
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="p-4 space-y-6">
-        <!-- Game Environment -->
-        <div id="game-environment" class="hidden bg-cover bg-center rounded-lg" style="background-image: url('https://placehold.co/800x400'); height: 400px;">
-            <!-- Overlay for game elements -->
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg">
-                    <h2 class="text-2xl font-bold">Game Environment</h2>
+            <div class="profile-image">
+                <img src="path/to/character-image.jpg" alt="Character Image">
+            </div>
+        </section>
+        <section id="stats" class="content">
+            <h2>Character Stats</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="label">Vie:</span>
+                    <span id="vie">155,480</span>
+                    <button class="edit-stat" data-stat="vie"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Mana:</span>
+                    <span id="mana">250,000</span>
+                    <button class="edit-stat" data-stat="mana"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Intelligence:</span>
+                    <span id="intelligence">5,115</span>
+                    <button class="edit-stat" data-stat="intelligence"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Endurance:</span>
+                    <span id="endurance">7,774</span>
+                    <button class="edit-stat" data-stat="endurance"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Coup Critique:</span>
+                    <span id="critique">15%</span>
+                    <button class="edit-stat" data-stat="critique"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Hâte:</span>
+                    <span id="hate">7%</span>
+                    <button class="edit-stat" data-stat="hate"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Maîtrise:</span>
+                    <span id="maitrise">5%</span>
+                    <button class="edit-stat" data-stat="maitrise"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="stat">
+                    <span class="label">Polyvalence:</span>
+                    <span id="polyvalence">4%</span>
+                    <button class="edit-stat" data-stat="polyvalence"><i class="fas fa-edit"></i></button>
                 </div>
             </div>
-        </div>
-
-        <!-- Character Info -->
-        <div class="bg-gray-700 p-4 rounded-lg flex items-center space-x-4">
-            <img src="https://placehold.co/80x80" alt="Character Image" class="rounded-lg">
+        </section>
+        <section id="specialisation" class="content">
+            <h2>Spécialisation</h2>
+            <div class="spec-list">
+                <div class="spec" data-name="Équilibre">
+                    <h3>Équilibre</h3>
+                    <p>Joueur contre Joueur</p>
+                </div>
+                <div class="spec" data-name="Farouche">
+                    <h3>Farouche</h3>
+                    <p>Joueur contre Joueur</p>
+                </div>
+                <div class="spec" data-name="Gardien">
+                    <h3>Gardien</h3>
+                    <p>Joueur contre Joueur</p>
+                </div>
+                <div class="spec active" data-name="Restauration">
+                    <h3>Restauration</h3>
+                    <p>Joueur contre Joueur</p>
+                </div>
+            </div>
+        </section>
+        <section id="combat" class="content">
+            <h2>Combat</h2>
+            <div id="combat-log">
+                <p>Combat log will appear here...</p>
+            </div>
+            <button id="start-combat">Start Combat</button>
+        </section>
+        <section id="shop" class="content">
+            <h2>Shop</h2>
+            <div id="shop-items">
+                <div class="shop-item" data-item="sword" data-price="100">
+                    <h3>Sword</h3>
+                    <p>Price: 100 points</p>
+                    <button class="buy-item">Buy</button>
+                </div>
+                <div class="shop-item" data-item="shield" data-price="150">
+                    <h3>Shield</h3>
+                    <p>Price: 150 points</p>
+                    <button class="buy-item">Buy</button>
+                </div>
+                <div class="shop-item" data-item="potion" data-price="50">
+                    <h3>Potion</h3>
+                    <p>Price: 50 points</p>
+                    <button class="buy-item">Buy</button>
+                </div>
+            </div>
             <div>
-                <h3 class="text-xl font-bold">Character Name</h3>
-                <p class="text-sm">Level 11 | 0/0/2</p>
-                <p class="text-sm">Health: 797 / 797</p>
-                <p class="text-sm">Mana: 487 / 489</p>
+                <h3>Your Points: <span id="user-points">0</span></h3>
             </div>
-        </div>
-
-        <!-- Abilities -->
-        <div class="bg-gray-700 p-4 rounded-lg grid grid-cols-6 gap-2">
-            <div class="text-center">
-                <img src="https://placehold.co/40x40" alt="Ability A" class="rounded-lg mx-auto">
-                <p class="text-sm mt-2">A</p>
-            </div>
-            <div class="text-center">
-                <img src="https://placehold.co/40x40" alt="Ability Z" class="rounded-lg mx-auto">
-                <p class="text-sm mt-2">Z</p>
-            </div>
-            <div class="text-center">
-                <img src="https://placehold.co/40x40" alt="Ability E" class="rounded-lg mx-auto">
-                <p class="text-sm mt-2">E</p>
-            </div>
-            <div class="text-center">
-                <img src="https://placehold.co/40x40" alt="Ability R" class="rounded-lg mx-auto">
-                <p class="text-sm mt-2">R</p>
-            </div>
-            <div class="text-center">
-                <img src="https://placehold.co/40x40" alt="Ability D" class="rounded-lg mx-auto">
-                <p class="text-sm mt-2">D</p>
-            </div>
-            <div class="text-center">
-                <img src="https://placehold.co/40x40" alt="Ability F" class="rounded-lg mx-auto">
-                <p class="text-sm mt-2">F</p>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="hidden bg-gray-900 p-4 flex justify-center">
-        <button id="find-match" class="bg-blue-600 px-4 py-2 rounded-lg">Find Match</button>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        document.getElementById('find-match').addEventListener('click', function() {
-            document.getElementById('game-environment').classList.remove('hidden');
-        });
-    </script>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Personnage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-panel,
+        .right-panel {
+            width: 30%;
+        }
+
+        .center-panel {
+            width: 40%;
+            text-align: center;
+        }
+
+        .panel-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .race, .class {
+            margin-bottom: 20px;
+        }
+
+        .race-item, .class-item {
+            margin: 5px 0;
+            cursor: pointer;
+            padding: 5px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+
+        .race-item:hover, .class-item:hover {
+            background: #444;
+        }
+
+        .selected {
+            background: #666;
+        }
+
+        .character-info {
+            margin-top: 20px;
+        }
+
+        .character-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="panel-title">Races</div>
+            <div class="race" id="race-list">
+                <div class="race-item" data-race="Humain">Humain</div>
+                <div class="race-item" data-race="Nain">Nain</div>
+                <div class="race-item" data-race="Elfe de la nuit">Elfe de la nuit</div>
+                <div class="race-item" data-race="Gnome">Gnome</div>
+                <div class="race-item" data-race="Draeneï">Draeneï</div>
+                <div class="race-item" data-race="Worgen">Worgen</div>
+                <div class="race-item" data-race="Pandaren">Pandaren</div>
+            </div>
+        </div>
+        <div class="center-panel">
+            <div class="character-display">
+                <img src="character.jpg" alt="Character Image" id="character-image" width="100%">
+            </div>
+            <div class="character-info" id="character-info">
+                <p>Sélectionnez une race et une classe pour voir les détails du personnage.</p>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="panel-title">Classes</div>
+            <div class="class" id="class-list">
+                <div class="class-item" data-class="Guerrier">Guerrier</div>
+                <div class="class-item" data-class="Paladin">Paladin</div>
+                <div class="class-item" data-class="Chasseur">Chasseur</div>
+                <div class="class-item" data-class="Voleur">Voleur</div>
+                <div class="class-item" data-class="Prêtre">Prêtre</div>
+                <div class="class-item" data-class="Chaman">Chaman</div>
+                <div class="class-item" data-class="Mage">Mage</div>
+                <div class="class-item" data-class="Démoniste">Démoniste</div>
+                <div class="class-item" data-class="Moine">Moine</div>
+                <div class="class-item" data-class="Druide">Druide</div>
+                <div class="class-item" data-class="Chevalier de la mort">Chevalier de la mort</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const races = {
+            "Humain": "Esprit amélioré, Bonus aux gains de réputation, Expertise améliorée avec les Épées et Masses, Peut se libérer des effets bloquants ou altérant le mouvement.",
+            "Nain": "Résistance au Givre, Forme de pierre, Expertise améliorée avec les Armes à feu.",
+            "Elfe de la nuit": "Camouflage dans l'ombre, Rapidité, Résistance à la Nature.",
+            "Gnome": "Évasion, Expertise améliorée avec les Dagues et les Épées à une main, Bonus d'Intelligence.",
+            "Draeneï": "Présence héroïque, Guérison des ombres, Résistance à l'Ombre.",
+            "Worgen": "Sprint, Résistance aux Malédictions, Pêcheur naturel.",
+            "Pandaren": "Épicurien, Toucher du chi, Transe du repos.",
+        };
+
+        const classes = {
+            "Guerrier": "Rôle: infliger des dégâts ou tank, Armure lourde (plaques), Porte une arme à deux mains ou deux armes à une main.",
+            "Paladin": "Rôle: infliger des dégâts, tank ou soigneur, Armure lourde (plaques), Porte une arme à deux mains ou une arme à une main et un bouclier.",
+            "Chasseur": "Rôle: infliger des dégâts, Armure moyenne (mailles), Porte une arme à distance et une arme à une main.",
+            "Voleur": "Rôle: infliger des dégâts, Armure moyenne (cuir), Porte une arme dans chaque main.",
+            "Prêtre": "Rôle: infliger des dégâts ou soigneur, Armure légère (tissu), Porte un bâton ou une masse à une main et une main gauche.",
+            "Chaman": "Rôle: infliger des dégâts ou soigneur, Armure moyenne (mailles), Porte une arme à une main et un bouclier ou une arme à deux mains.",
+            "Mage": "Rôle: infliger des dégâts, Armure légère (tissu), Porte un bâton ou une dague et une main gauche.",
+            "Démoniste": "Rôle: infliger des dégâts, Armure légère (tissu), Porte un bâton ou une dague et une main gauche.",
+            "Moine": "Rôle: infliger des dégâts, tank ou soigneur, Armure moyenne (cuir), Porte une arme à une main ou deux armes à une main.",
+            "Druide": "Rôle: infliger des dégâts, tank ou soigneur, Armure moyenne (cuir), Porte une arme à deux mains.",
+            "Chevalier de la mort": "Rôle: infliger des dégâts ou tank, Armure lourde (plaques), Porte une arme à deux mains ou deux armes à une main."
+        };
+
+        const raceList = document.getElementById('race-list');
+        const classList = document.getElementById('class-list');
+        const characterInfo = document.getElementById('character-info');
+
+        raceList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('race-item')) {
+                clearSelections(raceList);
+                e.target.classList.add('selected');
+                updateCharacterInfo();
+            }
+        });
+
+        classList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('class-item')) {
+                clearSelections(classList);
+                e.target.classList.add('selected');
+                updateCharacterInfo();
+            }
+        });
+
+        function clearSelections(list) {
+            const items = list.getElementsByClassName('selected');
+            for (let item of items) {
+                item.classList.remove('selected');
+            }
+        }
+
+        function updateCharacterInfo() {
+            const selectedRace = document.querySelector('.race-item.selected');
+            const selectedClass = document.querySelector('.class-item.selected');
+
+            if (selectedRace && selectedClass) {
+                const race = selectedRace.getAttribute('data-race');
+                const className = selectedClass.getAttribute('data-class');
+                characterInfo.innerHTML = `
+                    <h3>${race} ${className}</h3>
+                    <p><strong>Race:</strong> ${races[race]}</p>
+                    <p><strong>Classe:</strong> ${classes[className]}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+
+</html>

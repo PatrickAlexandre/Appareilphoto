@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Game UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body class="bg-gray-800 text-white">
+
+    <!-- Header -->
+    <header class="bg-gray-900 p-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <i class="fas fa-gamepad text-2xl"></i>
+            <h1 class="text-xl font-bold">Game Name</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <i class="fas fa-bell text-xl"></i>
+                <span class="absolute top-0 right-0 bg-red-600 text-xs rounded-full px-1">3</span>
+            </div>
+            <img src="https://placehold.co/40x40" alt="Profile Picture" class="rounded-full">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 space-y-6">
+        <!-- Game Environment -->
+        <div id="game-environment" class="hidden bg-cover bg-center rounded-lg" style="background-image: url('https://placehold.co/800x400'); height: 400px;">
+            <!-- Overlay for game elements -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg">
+                    <h2 class="text-2xl font-bold">Game Environment</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Info -->
+        <div class="bg-gray-700 p-4 rounded-lg flex items-center space-x-4">
+            <img src="https://placehold.co/80x80" alt="Character Image" class="rounded-lg">
+            <div>
+                <h3 class="text-xl font-bold">Character Name</h3>
+                <p class="text-sm">Level 11 | 0/0/2</p>
+                <p class="text-sm">Health: 797 / 797</p>
+                <p class="text-sm">Mana: 487 / 489</p>
+            </div>
+        </div>
+
+        <!-- Abilities -->
+        <div class="bg-gray-700 p-4 rounded-lg grid grid-cols-6 gap-2">
+            <div class="text-center">
+                <img src="https://placehold.co/40x40" alt="Ability A" class="rounded-lg mx-auto">
+                <p class="text-sm mt-2">A</p>
+            </div>
+            <div class="text-center">
+                <img src="https://placehold.co/40x40" alt="Ability Z" class="rounded-lg mx-auto">
+                <p class="text-sm mt-2">Z</p>
+            </div>
+            <div class="text-center">
+                <img src="https://placehold.co/40x40" alt="Ability E" class="rounded-lg mx-auto">
+                <p class="text-sm mt-2">E</p>
+            </div>
+            <div class="text-center">
+                <img src="https://placehold.co/40x40" alt="Ability R" class="rounded-lg mx-auto">
+                <p class="text-sm mt-2">R</p>
+            </div>
+            <div class="text-center">
+                <img src="https://placehold.co/40x40" alt="Ability D" class="rounded-lg mx-auto">
+                <p class="text-sm mt-2">D</p>
+            </div>
+            <div class="text-center">
+                <img src="https://placehold.co/40x40" alt="Ability F" class="rounded-lg mx-auto">
+                <p class="text-sm mt-2">F</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="hidden bg-gray-900 p-4 flex justify-center">
+        <button id="find-match" class="bg-blue-600 px-4 py-2 rounded-lg">Find Match</button>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('find-match').addEventListener('click', function() {
+            document.getElementById('game-environment').classList.remove('hidden');
+        });
+    </script>
+    <script src="x/modalEnergy.js"></script>
+    <script src="x/cameraCapture.js"></script>
+</body>
+
+</html>

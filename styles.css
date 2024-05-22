@@ -1,71 +1,159 @@
-.hidden {
-    display: none;
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+#app {
+    width: 90%;
+    max-width: 600px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 200px;
-    background-color: black;
-    color: #fff;
+header {
+    background-color: #202020;
+    padding: 10px;
     text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -100px;
-    opacity: 0;
-    transition: opacity 0.3s;
+    border-bottom: 1px solid #333;
 }
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+}
+
+.content {
+    display: none;
+    padding: 20px;
+    transition: opacity 0.5s;
+}
+
+.content.active {
+    display: block;
     opacity: 1;
 }
 
-.nav-button {
+.stats-grid {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.stat {
+    flex: 1 1 45%;
+    margin: 5px;
+    background-color: #2f2f2f;
+    padding: 10px;
     border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    position: relative;
 }
 
-.nav-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.stat .label {
+    display: block;
+    font-weight: bold;
 }
 
-.nav-button.active {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #000;
+.stat .edit-stat {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1em;
 }
 
-.nav-icon {
-    font-size: 1.2rem;
+.spec-list {
+    display: flex;
+    flex-direction: column;
 }
 
-.transition-color {
-    transition: color 0.5s ease;
+.spec {
+    background-color: #2f2f2f;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Nouveau style pour le sélecteur MBTI */
-#mbti-type {
-    max-width: 100%;
+.spec.active {
+    background-color: #4CAF50;
 }
 
-#lifePercentage {
+.spec.inactive {
+    background-color: #555;
 }
 
-#lifePercentageText {
+.spec h3 {
+    margin: 0;
+}
+
+.spec p {
+    margin: 5px 0 0;
+}
+
+#combat-log {
+    background-color: #2f2f2f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 100px;
+    overflow-y: auto;
+}
+
+#shop-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.shop-item {
+    flex: 1 1 45%;
+    margin: 5px;
+    background-color: #2f2f2f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.shop-item button {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.shop-item button:hover {
+    background-color: #45a049;
 }
